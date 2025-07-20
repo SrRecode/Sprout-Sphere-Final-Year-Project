@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary-50: #f0fdf4;
+    --color-primary-100: #dcfce7;
+    --color-primary-200: #bbf7d0;
+    --color-primary-300: #86efac;
+    --color-primary-400: #4ade80;
+    --color-primary-500: #22c55e;
+    --color-primary-600: #16a34a;
+    --color-primary-700: #15803d;
+    --color-primary-800: #166534;
+    --color-primary-900: #14532d;
+    --color-primary-950: #052e16;
+    
+    /* Cyan accent */
+    --color-cyan-400: #22d3ee;
+    --color-cyan-500: #06b6d4;
+    
+    /* Accent Color */
+    --color-accent: #FACC15;
+    --color-accent-light: rgba(250, 204, 21, 0.1);
+    
+    /* Font Family */
+    --font-heading: 'Clash Display', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    
+    /* Base Elements */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    /* Scrollbar Colors */
+    --scrollbar-track-bg: rgba(0, 0, 0, 0.05);
+    --scrollbar-thumb-bg: var(--color-primary-300);
+    --scrollbar-thumb-hover-bg: var(--color-primary-400);
+  }
+  
+  /* Dark mode preference */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground: 210 40% 98%;
+      --background: 222 47% 11%;
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+  
+  body.dark {
+    @apply bg-dark-800 text-dark-100;
+    --scrollbar-track-bg: rgba(255, 255, 255, 0.05); /* Lighter track for dark mode */
+    --scrollbar-thumb-bg: var(--color-primary-700); /* Darker thumb for dark mode */
+    --scrollbar-thumb-hover-bg: var(--color-primary-600); /* Darker thumb hover for dark mode */
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .bg-primary-gradient {
+    background: linear-gradient(to right, var(--color-primary-400), var(--color-cyan-400));
+  }
+  
+  .text-primary-gradient {
+    background: linear-gradient(to right, var(--color-primary-400), var(--color-cyan-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+  
+  .transition-smooth {
+    transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  
+  /* Custom scrollbar for better UX */
+  .scrollbar-green::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-green::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+    border-radius: 10px;
+  }
+  
+  .scrollbar-green::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+    border-radius: 10px;
+  }
+  
+  .scrollbar-green::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-bg);
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease infinite;
+}
+
+/* Removed all custom cursor CSS */
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Add Clash Display import if available or use another font as fallback */
